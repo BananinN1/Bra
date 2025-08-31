@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainrots Store ⚡</title>
+  <link rel="icon" type="image/png" href="Img/favicon.ico">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;cursor:none;}
+    body{background:#0d0d0d;color:#fff;overflow-x:hidden;}
+
+    /* Cursor personalizado */
+    .cursor{
+      width:20px;height:20px;border:2px solid #00ffe0;border-radius:50%;
+      position:fixed;transform:translate(-50%,-50%);
+      pointer-events:none;z-index:9999;transition:all 0.15s ease-out;
+    }
+    .cursor-follower{
+      width:40px;height:40px;background:rgba(0,255,224,0.2);
+      border-radius:50%;position:fixed;transform:translate(-50%,-50%);
+      pointer-events:none;z-index:9998;transition:all 0.25s ease-out;
+    }
+
+    header{
+      position:fixed;top:0;left:0;width:100%;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 10%;background:rgba(0,0,0,0.6);backdrop-filter:blur(15px);
+      z-index:1000;box-shadow:0 2px 20px rgba(0,255,224,0.2);
+    }
+    header h1{font-size:2rem;color:#00ffe0;text-shadow:0 0 10px #00ffe0;}
+    header nav a{
+      margin-left:25px;text-decoration:none;color:#fff;font-weight:600;position:relative;
+    }
+    header nav a::after{
+      content:'';position:absolute;left:0;bottom:-5px;width:0;height:2px;
+      background:#00ffe0;transition:0.3s;
+    }
+    header nav a:hover::after{width:100%;}
+
+    /* Hero con efecto typing */
+    .hero{
+      height:100vh;display:flex;flex-direction:column;
+      justify-content:center;align-items:center;text-align:center;
+      background:radial-gradient(circle at top,#1e1e1e,#0d0d0d);
+      position:relative;overflow:hidden;
+    }
+    .hero h2{
+      font-size:3.5rem;color:#00ffe0;margin-bottom:15px;
+      text-shadow:0 0 15px #00ffe0;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow{
+      from{text-shadow:0 0 10px #00ffe0;}
+      to{text-shadow:0 0 25px #00ffe0,0 0 40px #0078ff;}
+    }
+    .hero p{font-size:1.2rem;max-width:600px;margin-bottom:30px;}
+    .btn{
+      padding:14px 30px;border:none;border-radius:40px;
+      background:linear-gradient(90deg,#00ffe0,#0078ff);
+      color:#111;font-weight:bold;font-size:1.1rem;cursor:pointer;
+      box-shadow:0 0 20px #00ffe0;transition:transform 0.2s,box-shadow 0.3s;
+    }
+    .btn:hover{transform:scale(1.1);box-shadow:0 0 30px #00ffe0;}
+
+    /* Efecto magnetismo */
+    .magnetic{position:relative;display:inline-block;overflow:hidden;}
+
+    /* Productos */
+    .productos{padding:100px 10%;background:#141414;text-align:center;}
+    .productos h2{font-size:2.8rem;color:#00ffe0;margin-bottom:50px;}
+    .grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+    .card{
+      background:#1f1f1f;border-radius:20px;padding:25px;overflow:hidden;
+      box-shadow:0 0 20px rgba(0,0,0,0.7);transform:translateY(0);transition:0.4s;
+      position:relative;
+    }
+    .card:hover{
+      transform:translateY(-12px) scale(1.05);
+      box-shadow:0 0 30px #00ffe0;
+    }
+    .card img {
+  width: 100%;
+  height: 600px; /* todas las imágenes tendrán la misma altura */
+  object-fit: cover; /* recorta la imagen sin deformarla */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: 0.4s;
+}
+
+    .card:hover img{transform:scale(1.1);}
+    .card h3{margin-bottom:10px;color:#fff;}
+    .card p{font-size:0.95rem;margin-bottom:15px;color:#aaa;}
+    .price{font-size:1.3rem;color:#00ffe0;margin-bottom:15px;}
+    .card button{width:100%;}
+
+    /* CTA */
+    .cta{padding:120px 10%;text-align:center;background:linear-gradient(135deg,#00ffe0,#0078ff);color:#000;}
+    .cta h2{font-size:2.8rem;margin-bottom:25px;text-shadow:0 0 20px #fff;}
+    .cta p{font-size:1.2rem;margin-bottom:35px;}
+    .cta .btn{background:#111;color:#fff;box-shadow:0 0 20px #111;}
+    .cta .btn:hover{background:#fff;color:#000;box-shadow:0 0 25px #000;}
+
+    footer{padding:25px 10%;text-align:center;background:#0b0b0b;color:#777;font-size:0.9rem;}
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>🌀 Brainrots Store</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2 id="typing"></h2>
+    <p>Los brainrots más virales y buscados, ahora a tu alcance. Compra con confianza y sé parte de la tendencia mundial.</p>
+    <div class="magnetic">
+      <a href="https://wa.me/948816366?text=Hola%2C%20quiero%20comprar%20Brainrots" target="_blank">
+        <button class="btn">Comprar Ahora 🚀</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section id="productos" class="productos">
+    <h2>Nuestros Brainrots</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="Img/brainrot1.png" alt="Brainrot 1">
+        <h3>Brainrot #1</h3>
+        <p>Un clásico viral que no puede faltar.</p>
+        <div class="price">S/0.50 - S/1.00</div>
+        <a href="https://wa.me/948816366?text=Quiero%20el%20Brainrot%20%231" target="_blank">
+          <button class="btn">Comprar por WhatsApp</button>
+        </a>
+      </div>
+      <div class="card">
+        <img src="Img/brainrot2.png" alt="Brainrot 2">
+        <h3>Brainrot #2</h3>
+        <p>El favorito de las tendencias actuales.</p>
+        <div class="price">S/0.80 - S/1</div>
+        <a href="https://wa.me/948816366?text=Quiero%20el%20Brainrot%20%232" target="_blank">
+          <button class="btn">Comprar por WhatsApp</button>
+        </a>
+      </div>
+      <div class="card">
+        <img src="Img/img1-3.png" alt="Brainrot 3">
+        <h3>Brainrot #3</h3>
+        <p>Exclusivo para verdaderos coleccionistas.</p>
+        <div class="price">S/1 - S/2</div>
+        <a href="https://wa.me/948816366?text=Quiero%20el%20Brainrot%20%233" target="_blank">
+          <button class="btn">Comprar por WhatsApp</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contacto">
+    <h2>¿Listo para unirte al movimiento Brainrot? 🔥</h2>
+    <p>Compra ahora y recibe acceso instantáneo a los mejores brainrots del mercado.</p>
+    <a href="https://wa.me/948816366?text=Hola%20quiero%20info" target="_blank">
+      <button class="btn">Escribirme por WhatsApp 💬</button>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Brainrots Store | Todos los derechos reservados
+  </footer>
+
+  <!-- Librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+
+  <!-- JavaScript -->
+  <script>
+    // Cursor personalizado
+    const cursor=document.querySelector('.cursor');
+    const follower=document.querySelector('.cursor-follower');
+    document.addEventListener('mousemove',e=>{
+      cursor.style.left=e.clientX+'px';
+      cursor.style.top=e.clientY+'px';
+      follower.style.left=e.clientX+'px';
+      follower.style.top=e.clientY+'px';
+    });
+
+    // Efecto typing
+    const typingText="Brainrots Exclusivos 🔥";
+    let i=0;
+    function typeEffect(){
+    if(i<typingText.length){
+        document.getElementById("typing").innerHTML+=typingText.charAt(i);
+        i++;setTimeout(typeEffect,100);
+    }
+    }
+    typeEffect();
+
+    // ScrollReveal animaciones
+    ScrollReveal().reveal('.card',{delay:200,origin:'bottom',distance:'60px',duration:1000,interval:200});
+    ScrollReveal().reveal('.cta h2',{delay:200,origin:'top',distance:'50px',duration:1000});
+    ScrollReveal().reveal('.cta p',{delay:400,origin:'bottom',distance:'50px',duration:1000});
+
+    // Efecto magnetismo en botones
+    const magnets=document.querySelectorAll('.magnetic');
+    magnets.forEach(magnet=>{
+    magnet.addEventListener('mousemove',function(e){
+        const rect=magnet.getBoundingClientRect();
+        const x=e.clientX-rect.left-rect.width/2;
+        const y=e.clientY-rect.top-rect.height/2;
+        magnet.children[0].style.transform=`translate(${x*0.2}px,${y*0.2}px)`;
+    });
+    magnet.addEventListener('mouseleave',function(){
+        magnet.children[0].style.transform="translate(0,0)";
+    });
+    });
+</script>
+</body>
+</html>
